@@ -12,7 +12,7 @@ Run `yarn start` and open [http://localhost:3000] in browser
 
 Run `yarn test` to launch the test runner
 
-### If I Had More Time
+## If I Had More Time
 
 Pagination for search results
 
