@@ -1,0 +1,17 @@
+.container {
+    height: 70px;
+    display: flex;
+    padding: 16px;
+    border-bottom: 1px solid lightgray;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: rgb(36,41,46);
+    color: white;
+    align-items: center;
+
+    h1 {
+        padding-left: 16px;
+        margin-right: 16px;
+    }
+}
