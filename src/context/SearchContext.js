@@ -6,8 +6,11 @@ const SearchContext = createContext();
 
 export const SearchProvider = ({ children }) => {
     const [searchInput, setSearchInput] = useState('');
+    const [debouncedInput, setDebouncedInput] = useState('');
+    const [graphQLSelected, setGraphQLSelected] = useState(false);    /* feature flag to enable using github graphqlv4 api*/
     const [repos, setRepos] = useState([]);
     const [message, setMessage] = useState('');
+
     const debounceSearch = useMemo(
         () =>
             debounce(async (value) => {
@@ -29,18 +32,32 @@ export const SearchProvider = ({ children }) => {
         []
     )
 
+    const debounceSearchGQL = useMemo(
+        () =>
+            debounce(async (value) => {
+                if (!value) return
+
+                setDebouncedInput(value);
+            }, 1000),
+        []
+    )
+
     const handleUpdateSearchParam = (event) => {
         setSearchInput(event.target.value);
 
-        debounceSearch(event.target.value)
+        graphQLSelected ?
+            debounceSearchGQL(event.target.value) :
+            debounceSearch(event.target.value)
     }
 
     return (
         <SearchContext.Provider
             value={{
                 searchInput,
+                debouncedInput,
                 repos,
                 message,
+                graphQLSelected,
                 handleUpdateSearchParam
             }}
         >
