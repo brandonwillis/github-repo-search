@@ -17,14 +17,10 @@ function SearchContainerGQL() {
         });
     }, [debouncedInput, fetchUserRepos])
 
-    useEffect(() => {
-        if (!graphQLSelected) {
-            return <></>
-        }
-    }, [graphQLSelected])
-
     return useMemo(() => {
-        console.log("v4 re-render")
+        if (!graphQLSelected) {
+            return <div className={styles.hideContainer}></div>
+        }
 
         return (
             <section className={styles.container}>
@@ -40,7 +36,7 @@ function SearchContainerGQL() {
                 )}
             </section>
         )
-    }, [data, loading, error])
+    }, [data, loading, error, graphQLSelected])
 }
 
 export default SearchContainerGQL;

@@ -7,7 +7,7 @@ const SearchContext = createContext();
 export const SearchProvider = ({ children }) => {
     const [searchInput, setSearchInput] = useState('');
     const [debouncedInput, setDebouncedInput] = useState('');
-    const [graphQLSelected, setGraphQLSelected] = useState(false);    /* feature flag to enable using github graphqlv4 api*/
+    const [graphQLSelected, setGraphQLSelected] = useState(false);    /* feature flag to enable using GitHub GraphQL v4 api*/
     const [repos, setRepos] = useState([]);
     const [message, setMessage] = useState('');
 
